@@ -1,0 +1,7 @@
+button[mat-raised-button] {
+    margin-left: 20px;
+}
+
+.total-price {
+    text-align: right;
+}

@@ -1,0 +1,23 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{market.id}}</mat-card-title>
+        <mat-card-subtitle>{{market.category}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            Price: {{market.price}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-form-field>
+            <input name="quantity" matInput type="number" min="1" #quantity>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="buy(quantity.value)"
+        [disabled]="quantity.value < 1">
+            Buy
+        </button>
+        <p class="total-price" *ngIf="quantity.value >= 1">
+            Total price: {{market.price * quantity.value}}
+        </p>
+    </mat-card-actions>
+</mat-card>

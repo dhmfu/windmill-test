@@ -1,6 +1,8 @@
 <mat-toolbar color="primary">
-    <a routerLink="markets" mat-button>markets</a>
-    <a routerLink="portfolio" mat-button>portfolio</a>
+    <a routerLink="markets" mat-button>Markets</a>
+    <a routerLink="portfolio" mat-button>Portfolio</a>
+    <span class="spacer"></span>
+    <span class="user-balance">User balance: {{user.balance}}</span>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

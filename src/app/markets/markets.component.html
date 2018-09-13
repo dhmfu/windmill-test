@@ -1,3 +1,5 @@
-<p>
-  markets works!
-</p>
+<mat-grid-list cols="5">
+  <mat-grid-tile *ngFor="let market of markets">
+      <app-market [market]="market"></app-market>
+  </mat-grid-tile>
+</mat-grid-list>
