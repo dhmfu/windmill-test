@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MarketsService } from '../services/markets.service';
 
-import { Market } from '../models/stock';
+import { Market } from '../models/market';
 
 @Component({
     selector: 'app-markets',

@@ -1,24 +1,35 @@
 import { Injectable } from '@angular/core';
 
+import { UserService } from './user.service';
+
 import { STOCKS } from '../mocks/stocks';
-import { Market } from '../models/stock';
+
+import { Market } from '../models/market';
 
 @Injectable({
     providedIn: 'root'
 })
 export class MarketsService {
 
-    constructor() { }
+    constructor(private userService: UserService) { }
 
     getMarkets(): Promise<Market[]> {
-        return Promise.resolve(this.mapMarket(STOCKS));
+        return Promise.resolve(this.mapMarkets(STOCKS));
     }
 
-    private mapMarket(stocks: Array<any>): Market[] {
-        return stocks.map(stock => ({
-            id: Number(stock.id),
-            price: Number(stock.price),
-            category: String(stock.category)
+    private mapMarkets(markets: Array<any>): Market[] {
+        return markets.map(market => ({
+            id: Number(market.id),
+            price: Number(market.price),
+            category: String(market.category)
         }));
+    }
+
+    buy(market: Market, quantity: number): boolean {
+        const userBalance = this.userService.getBalance();
+        const total = +(quantity * market.price).toFixed(2);
+
+        return this.userService.decreaseBalance(total)
+            && (this.userService.addToStock(market.id, quantity) || true);
     }
 }

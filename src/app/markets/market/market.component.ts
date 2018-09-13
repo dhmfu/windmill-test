@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 
-import { Market } from '../../models/stock';
+import { Market } from '../../models/market';
+
+import { UserService } from '../../services/user.service';
+import { MarketsService } from '../../services/markets.service';
 
 @Component({
     selector: 'app-market',
@@ -10,13 +13,16 @@ import { Market } from '../../models/stock';
 export class MarketComponent implements OnInit {
     @Input() market: Market;
 
-    constructor() { }
+    constructor(
+        private userService: UserService,
+        private marketsService: MarketsService
+    ) { }
 
     ngOnInit() {
     }
 
     buy(quantity: string | number) {
         quantity = Number(quantity);
-        console.log(quantity * this.market.price);
+        console.log(this.marketsService.buy(this.market, quantity));
     }
 }

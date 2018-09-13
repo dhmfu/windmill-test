@@ -2,7 +2,7 @@
     <a routerLink="markets" mat-button>Markets</a>
     <a routerLink="portfolio" mat-button>Portfolio</a>
     <span class="spacer"></span>
-    <span class="user-balance">User balance: {{user.balance}}</span>
+    <span class="user-balance">User balance: {{userBalance | number:'1.2'}}</span>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
