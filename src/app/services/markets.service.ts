@@ -26,10 +26,16 @@ export class MarketsService {
     }
 
     buy(market: Market, quantity: number): boolean {
-        const userBalance = this.userService.getBalance();
         const total = +(quantity * market.price).toFixed(2);
 
         return this.userService.decreaseBalance(total)
-            && (this.userService.addToStock(market.id, quantity) || true);
+            && (this.userService.increaseStock(market, quantity) || true);
+    }
+
+    sell(market: Market, quantity: number): boolean {
+        const total = quantity * market.price;
+
+        return this.userService.decreaseStock(market.id, quantity)
+            && (this.userService.increaseBalance(total) || true);
     }
 }

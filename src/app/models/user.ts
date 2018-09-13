@@ -1,4 +1,6 @@
+import { Stock } from './stock';
+
 export interface User {
     balance: number;
-    stock: { [key: number]: number };
+    stock: Stock;
 }

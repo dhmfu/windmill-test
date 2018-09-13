@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { User } from '../models/user';
 import { Market } from '../models/market';
+import { Stock } from '../models/stock';
 
 @Injectable({
     providedIn: 'root'
@@ -12,12 +13,16 @@ export class UserService {
     constructor() {
         this.user = {
             balance: 10000.00,
-            stock: {}
+            stock: []
         }
     }
 
     getBalance(): number {
         return this.user.balance;
+    }
+
+    getStock(): Stock {
+        return [ ...this.user.stock ];
     }
 
     decreaseBalance(summ: number): boolean {
@@ -30,11 +35,33 @@ export class UserService {
         }
     }
 
-    addToStock(marketId: number, quantity: number): void {
-        if (this.user.stock[marketId]) {
-            this.user.stock[marketId] += quantity;
+    increaseBalance(summ: number): void {
+        this.user.balance += summ;
+    }
+
+    increaseStock(market: Market, quantity: number): void {
+        let stockItem = this.user.stock.find(
+            stockItem => stockItem.market.id == market.id
+        );
+
+        if(stockItem) stockItem.quantity += quantity;
+        else this.user.stock.push({ market, quantity });
+    }
+
+    decreaseStock(marketId: number, quantity: number): boolean {
+        const stockItem = this.user.stock.find(stockItem =>
+            stockItem.market.id == marketId
+        );
+
+        const difference = stockItem.quantity - quantity;
+        if (difference > 0) {
+            stockItem.quantity = difference;
+            return true;
+        } else if(difference == 0) {
+            this.user.stock = this.user.stock.filter(item => item != stockItem);
+            return true;
         } else {
-            this.user.stock[marketId] = quantity;
+            return false;
         }
     }
 }
