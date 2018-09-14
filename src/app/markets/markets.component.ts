@@ -14,6 +14,7 @@ export class MarketsComponent implements OnInit {
     markets: Market[];
     visibleMarkets: Market[];
     categories: string[] = [];
+    cols = 5;
     get userBalance(): number {
         return this.userService.getBalance();
     }
@@ -31,6 +32,7 @@ export class MarketsComponent implements OnInit {
                 market => market.category
             )));
         });
+        this.setCols();
     }
 
     private filterMarkets(pattern: RegExp): void {
@@ -38,5 +40,11 @@ export class MarketsComponent implements OnInit {
             return pattern.test(market.category);
         });
     }
+
+    setCols(): void {
+			this.cols = (window.innerWidth >= 1360) ? 4 :
+							(window.innerWidth >= 1024) ? 3 :
+							(window.innerWidth >= 768) ? 2 : 1;
+	}
 
 }

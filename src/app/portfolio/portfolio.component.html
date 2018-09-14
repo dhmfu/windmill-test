@@ -1,5 +1,5 @@
 <h1>Total price of all bought stocks: {{totalPrice | number:'1.2'}}</h1>
-<mat-grid-list cols="5">
+<mat-grid-list [cols]="cols" (window:resize)="setCols()">
   <mat-grid-tile *ngFor="let stockItem of stock">
       <app-sell-market [item]="stockItem" (outOfItem)="removeItem($event)">
       </app-sell-market>
