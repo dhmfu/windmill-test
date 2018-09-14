@@ -1,5 +1,9 @@
+<app-market-filter [options]="categories" *ngIf="categories.length"
+(filtered)="filterMarkets($event)">
+</app-market-filter>
 <mat-grid-list cols="5">
-  <mat-grid-tile *ngFor="let market of markets">
-      <app-buy-market [market]="market"></app-buy-market>
+  <mat-grid-tile *ngFor="let market of visibleMarkets">
+      <app-buy-market [market]="market" [userBalance]="userBalance">
+      </app-buy-market>
   </mat-grid-tile>
 </mat-grid-list>

@@ -1,0 +1,11 @@
+.filter {
+    text-align: center;
+}
+
+.filter span {
+    margin-right: 15px;
+}
+
+.filter mat-form-field {
+    width: 300px;
+}

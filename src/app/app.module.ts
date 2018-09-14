@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
@@ -18,6 +19,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { BuyMarketComponent } from './markets/buy-market/buy-market.component';
 import { FormsModule }   from '@angular/forms';
 import { SellMarketComponent } from './portfolio/sell-market/sell-market.component';
+import { MarketFilterComponent } from './markets/market-filter/market-filter.component';
 
 @NgModule({
     declarations: [
@@ -25,13 +27,15 @@ import { SellMarketComponent } from './portfolio/sell-market/sell-market.compone
         MarketsComponent,
         PortfolioComponent,
         BuyMarketComponent,
-        SellMarketComponent
+        SellMarketComponent,
+        MarketFilterComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         FormsModule,
+        MatAutocompleteModule,
         MatButtonModule,
         MatCardModule,
         MatInputModule,

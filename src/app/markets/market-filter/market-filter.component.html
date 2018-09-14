@@ -1,0 +1,13 @@
+<div class="filter">
+    <span>Filter by category:</span>
+    <mat-form-field>
+        <input type="text" matInput [matAutocomplete]="auto"
+        (keyup)="onFilterInput($event, $event.target.value)">
+    </mat-form-field>
+    <mat-autocomplete #auto="matAutocomplete"
+    (optionSelected)="optionSelected($event)">
+        <mat-option *ngFor="let options of visibleOptions" [value]="options">
+            {{ options }}
+        </mat-option>
+    </mat-autocomplete>
+</div>

@@ -7,17 +7,19 @@
         <p>
             Price: {{market.price | number:'1.2'}}
         </p>
+        <p [style.opacity]="(quantity.value >= 1) * 1">
+            Total price: {{(market.price * quantity.value) | number:'1.2'}}
+        </p>
     </mat-card-content>
     <mat-card-actions>
         <mat-form-field>
-            <input name="quantity" matInput type="number" min="1" #quantity>
+            <input name="quantity" matInput type="number" min="1" #quantity
+            (keypress)="onKeyPress($event)" [disabled]="!maxQuantity()"
+            [attr.max]="maxQuantity()">
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="buy(quantity.value)"
-        [disabled]="quantity.value < 1">
+        [disabled]="(quantity.value < 1) || (quantity.value * market.price >= userBalance)">
             Buy
         </button>
-        <p class="total-price" *ngIf="quantity.value >= 1">
-            Total price: {{(market.price * quantity.value) | number:'1.2'}}
-        </p>
     </mat-card-actions>
 </mat-card>

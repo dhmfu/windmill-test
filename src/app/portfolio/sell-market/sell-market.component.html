@@ -11,6 +11,9 @@
             <br>
             Total price: {{market.price * quantity | number:'1.2'}}
         </p>
+        <p [style.opacity]="(sellQuantity.value >= 1) * 1">
+            Will be sold for {{market.price*sellQuantity.value | number:'1.2'}}
+        </p>
     </mat-card-content>
     <mat-card-actions>
         <mat-form-field>
@@ -18,7 +21,8 @@
             [attr.max]="quantity" #sellQuantity>
         </mat-form-field>
         <button mat-raised-button (click)="sell(sellQuantity.value)"
-        [disabled]="sellQuantity.value < 1" color="primary">
+        [disabled]="sellQuantity.value < 1 || sellQuantity.value > quantity"
+        color="primary">
             Sell
         </button>
     </mat-card-actions>
