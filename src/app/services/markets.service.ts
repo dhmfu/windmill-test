@@ -21,7 +21,8 @@ export class MarketsService {
         return markets.map(market => ({
             id: Number(market.id),
             price: Number(market.price),
-            category: String(market.category)
+            category: String(market.category),
+            name: String(market.name)
         }));
     }
 

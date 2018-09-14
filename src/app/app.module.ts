@@ -9,6 +9,7 @@ import {
     MatInputModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatSnackBarModule,
     MatToolbarModule
 } from '@angular/material';
 
@@ -41,6 +42,7 @@ import { MarketFilterComponent } from './markets/market-filter/market-filter.com
         MatInputModule,
         MatFormFieldModule,
         MatGridListModule,
+        MatSnackBarModule,
         MatToolbarModule
     ],
     providers: [],

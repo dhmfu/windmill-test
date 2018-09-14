@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 import { StockItem } from '../../models/stock';
 import { Market } from '../../models/market';
@@ -17,21 +18,29 @@ export class SellMarketComponent implements OnInit {
     market: Market;
     quantity: number;
 
-    constructor(private marketsService: MarketsService) { }
+    constructor(
+        private marketsService: MarketsService,
+        public snackBar: MatSnackBar
+    ) { }
 
     ngOnInit() {
         this.market = this.item.market;
         this.quantity = this.item.quantity;
     }
 
-    sell(quantity: string | number): void {
-        quantity = Number(quantity);
+    sell(quantityInput: HTMLInputElement): void {
+        const quantity = Number(quantityInput.value);
 
         if(this.marketsService.sell(this.market, quantity)) {
             this.quantity -= quantity;
-        }
-        if(this.quantity == 0) {
-            this.outOfItem.emit(this.market.id);
+            this.snackBar.open('Item(s) was successfully sold', 'OK', {
+                duration: 2000
+            });
+            quantityInput.value = '';
+
+            if(this.quantity == 0) {
+                this.outOfItem.emit(this.market.id);
+            }
         }
     }
 

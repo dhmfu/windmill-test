@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>{{market.id}}</mat-card-title>
+        <mat-card-title>{{market.name}}</mat-card-title>
         <mat-card-subtitle>{{market.category}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -17,7 +17,7 @@
             (keypress)="onKeyPress($event)" [disabled]="!maxQuantity()"
             [attr.max]="maxQuantity()">
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="buy(quantity.value)"
+        <button mat-raised-button color="primary" (click)="buy(quantity)"
         [disabled]="(quantity.value < 1) || (quantity.value * market.price >= userBalance)">
             Buy
         </button>

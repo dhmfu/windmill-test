@@ -1,5 +1,6 @@
 export interface Market {
     id: number,
     price: number,
-    category: string
+    category: string;
+    name: string;
 }
